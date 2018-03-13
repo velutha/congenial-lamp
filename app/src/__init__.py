@@ -14,14 +14,9 @@ app = Flask(__name__)
 
 # CACHE = RedisHelper().create_client()
 
-DB_CONNECTION = os.environ.get("DB_CONNECTION") or "mongodb://localhost:27027/anachatdb"
+DB_CONNECTION = os.environ.get("DB_CONNECTION") or "mongodb://localhost:27017/my_db"
 
-MONGO_CLIENT = MongoClient(
-    host=os.environ.get("DB_CONNECTION"),
-    maxPoolSize=None,
-    serverSelectionTimeoutMS=100,
-    connectTimeoutMS=20000
-    )
+MONGO_CLIENT = MongoClient(DB_CONNECTION)
 
 ThreadPool = ThreadPoolExecutorStackTraced(max_workers=20)
 
